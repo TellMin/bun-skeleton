@@ -1,16 +1,21 @@
 <script lang="ts">
-	export let data;
+	import { Avatar } from '@skeletonlabs/skeleton';
+	import { filter } from '@skeletonlabs/skeleton';
+	import { useChat } from 'ai/svelte';
+	const { input, handleSubmit, messages } = useChat();
 </script>
 
 <div class="container h-full mx-auto flex justify-center items-center">
-	<div class="space-y-10 text-center flex flex-col items-center">
-		<h2 class="h2">
-			<ul>
-				{#each data.countries as country}
-					<li>{country.name}</li>
-				{/each}
-			</ul>
-		</h2>
+	<div class="card p-4">
+		<form on:submit={handleSubmit}>
+			<input bind:value={$input} />
+			<button type="submit">Send</button>
+		</form>
+		<ul>
+			{#each $messages as message}
+				<li>{message.role}: {message.content}</li>
+			{/each}
+		</ul>
 	</div>
 </div>
 
