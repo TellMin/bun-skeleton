@@ -2,22 +2,18 @@ import type { ChatCompletionCreateParams } from 'openai/resources/chat';
 
 const functionDefinitions = [
 	{
-		name: 'get_current_weather',
-		description: 'Get the current weather',
+		name: 'get_restaurant_suggestions',
+		description: 'Get restaurant suggestions',
 		parameters: {
 			type: 'object',
 			properties: {
-				location: {
+				keyword: {
 					type: 'string',
-					description: 'The city and state, e.g. San Francisco, CA'
-				},
-				format: {
-					type: 'string',
-					enum: ['celsius', 'fahrenheit'],
-					description: 'The temperature unit to use. Infer this from the users location.'
+					description:
+						'Keyword to search for.Do not contain the word "restaurant" or "レストラン".words is separated by space.only 3 words can be specified.'
 				}
 			},
-			required: ['location', 'format']
+			required: ['keyword']
 		}
 	},
 	{
