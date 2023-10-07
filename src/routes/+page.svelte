@@ -3,6 +3,8 @@
 	import MessageCard from '$lib/components/MessageCard.svelte';
 	import MessagePrompt from '$lib/components/MessagePrompt.svelte';
 	import { InitPrompt, WelcomePrompt } from '$lib/prompt/init';
+	import { functionCallHandler } from '$lib/functions/functionCallHandler';
+	import { functions } from '$lib/functions/functionDefinitions';
 
 	const { input, handleSubmit, messages } = useChat({
 		initialMessages: [
@@ -16,7 +18,9 @@
 				role: 'assistant',
 				content: WelcomePrompt
 			}
-		]
+		],
+		experimental_onFunctionCall: functionCallHandler,
+		body: { functions }
 	});
 
 	const now = new Date();
