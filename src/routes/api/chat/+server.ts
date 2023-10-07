@@ -8,13 +8,15 @@ const openai = new OpenAI({
 });
 
 export async function POST({ request }) {
-	const { messages } = await request.json();
+	const { messages, functions, function_call } = await request.json();
 
 	// Ask OpenAI for a streaming chat completion given the prompt
 	const response = await openai.chat.completions.create({
 		model: 'gpt-3.5-turbo',
 		stream: true,
-		messages
+		messages,
+		functions,
+		function_call
 	});
 
 	// Convert the response into a friendly text-stream

@@ -7,7 +7,7 @@
 	export let startDate: Date;
 </script>
 
-{#if bubble.role == 'assistant'}
+{#if bubble.role == 'assistant' && bubble.content && !bubble.content.startsWith('{')}
 	<div class={`grid grid-cols-[auto_1fr] gap-2`}>
 		<Avatar src={psato} width="w-12" />
 		<div class={`card p-4 variant-soft rounded-tl-none space-y-2`}>
