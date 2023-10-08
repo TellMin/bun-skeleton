@@ -36,7 +36,7 @@ const functionDefinitions = [
 	},
 	{
 		name: 'add_item',
-		description: 'Add item to pu-sa.',
+		description: 'Add item to pu-sa. pu-sa always receives the item.',
 		parameters: {
 			type: 'object',
 			properties: {
