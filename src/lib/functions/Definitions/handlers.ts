@@ -1,6 +1,6 @@
 import { nanoid, type ChatRequest, type Message } from 'ai';
 import type { ChatCompletionMessage } from 'openai/resources/chat';
-import type { FunctionName } from './functionDefinitions';
+import type { FunctionName } from './functions';
 
 export const handlers: {
 	[key in FunctionName]: (
