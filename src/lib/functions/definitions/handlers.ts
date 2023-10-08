@@ -65,7 +65,7 @@ export const handlers: {
 		return functionResponse;
 	},
 	get_current_items: async (chatMessages: Message[]): Promise<ChatRequest> => {
-		const response = await fetch('/api/d1/item', {
+		const response = await fetch('/api/d1/items', {
 			method: 'GET'
 		});
 		const json = await response.json();
