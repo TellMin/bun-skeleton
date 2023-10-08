@@ -89,14 +89,14 @@ export const handlers: {
 		chatMessages: Message[],
 		functionCall: ChatCompletionMessage.FunctionCall
 	): Promise<ChatRequest> => {
-		const parsedFunctionCallArguments: { keyword: string } = JSON.parse(functionCall.arguments);
+		const parsedFunctionCallArguments: { item: string } = JSON.parse(functionCall.arguments);
 		const response = await fetch('/api/d1/item', {
 			method: 'POST',
 			body: JSON.stringify({
-				item: parsedFunctionCallArguments
+				item: parsedFunctionCallArguments.item
 			})
 		});
-		const json = await response.json();
+		const result: { item: string; states: string } = await response.json();
 		const functionResponse: ChatRequest = {
 			messages: [
 				...chatMessages,
@@ -104,9 +104,7 @@ export const handlers: {
 					id: nanoid(),
 					name: 'add_item',
 					role: 'function' as const,
-					content: JSON.stringify({
-						item: json
-					})
+					content: JSON.stringify(result)
 				}
 			]
 		};

@@ -15,6 +15,7 @@ export async function GET({ platform }) {
 export async function POST({ request, platform }) {
 	const d1Client = createD1Client(platform?.env?.DB);
 	const { item } = await request.json<ItemRequest>();
-	await d1Client.insert(items).values({ item }).execute();
+	console.log('item', item);
+	await d1Client.insert(items).values({ item: item.toString() }).execute();
 	return json({ item, states: 'success' });
 }
