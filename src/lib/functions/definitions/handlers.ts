@@ -63,5 +63,52 @@ export const handlers: {
 		};
 
 		return functionResponse;
+	},
+	get_current_items: async (chatMessages: Message[]): Promise<ChatRequest> => {
+		const response = await fetch('/api/d1/item', {
+			method: 'GET'
+		});
+		const json = await response.json();
+		const functionResponse: ChatRequest = {
+			messages: [
+				...chatMessages,
+				{
+					id: nanoid(),
+					name: 'get_current_items',
+					role: 'function' as const,
+					content: JSON.stringify({
+						items: json
+					})
+				}
+			]
+		};
+
+		return functionResponse;
+	},
+	add_item: async (
+		chatMessages: Message[],
+		functionCall: ChatCompletionMessage.FunctionCall
+	): Promise<ChatRequest> => {
+		const parsedFunctionCallArguments: { item: string } = JSON.parse(functionCall.arguments);
+		const response = await fetch('/api/d1/item', {
+			method: 'POST',
+			body: JSON.stringify({
+				item: parsedFunctionCallArguments.item
+			})
+		});
+		const result: { item: string; states: string } = await response.json();
+		const functionResponse: ChatRequest = {
+			messages: [
+				...chatMessages,
+				{
+					id: nanoid(),
+					name: 'add_item',
+					role: 'function' as const,
+					content: JSON.stringify(result)
+				}
+			]
+		};
+
+		return functionResponse;
 	}
 };
