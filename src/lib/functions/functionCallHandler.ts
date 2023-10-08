@@ -1,7 +1,7 @@
 import { type FunctionCallHandler, type Message, type ChatRequest, nanoid } from 'ai';
 import type { ChatCompletionMessage } from 'openai/resources/chat';
-import { getFunctionName } from './Definitions/functions';
-import { handlers } from './Definitions/handlers';
+import { getFunctionName } from './definitions/functions';
+import { handlers } from './definitions/handlers';
 
 export const functionCallHandler: FunctionCallHandler = async (chatMessages, functionCall) => {
 	const handler = getHandler(functionCall.name);
