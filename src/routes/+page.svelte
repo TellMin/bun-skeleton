@@ -27,7 +27,7 @@
 		experimental_onFunctionCall: functionCallHandler,
 		body: { functions },
 		onFinish: async () => {
-			const response = await fetch('api/d1/item');
+			const response = await fetch('api/d1/items');
 			items = await response.json();
 		}
 	});
