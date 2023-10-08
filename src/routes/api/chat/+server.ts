@@ -7,8 +7,18 @@ const openai = new OpenAI({
 	apiKey: OPENAI_API_KEY
 });
 
+interface ChatRequest {
+	messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[];
+	functions: OpenAI.Chat.Completions.ChatCompletionCreateParams.Function[] | undefined;
+	function_call:
+		| 'none'
+		| 'auto'
+		| OpenAI.Chat.Completions.ChatCompletionCreateParams.FunctionCallOption
+		| undefined;
+}
+
 export async function POST({ request }) {
-	const { messages, functions, function_call } = await request.json();
+	const { messages, functions, function_call } = await request.json<ChatRequest>();
 
 	// Ask OpenAI for a streaming chat completion given the prompt
 	const response = await openai.chat.completions.create({
