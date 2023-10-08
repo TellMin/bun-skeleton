@@ -90,7 +90,7 @@ export const handlers: {
 		functionCall: ChatCompletionMessage.FunctionCall
 	): Promise<ChatRequest> => {
 		const parsedFunctionCallArguments: { item: string } = JSON.parse(functionCall.arguments);
-		const response = await fetch('/api/d1/item', {
+		const response = await fetch('/api/d1/items', {
 			method: 'POST',
 			body: JSON.stringify({
 				item: parsedFunctionCallArguments.item
