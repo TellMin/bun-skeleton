@@ -9,6 +9,8 @@
 
 	export let data: PageData;
 
+	let items: { item: string }[] = data.items;
+
 	const { input, handleSubmit, messages } = useChat({
 		initialMessages: [
 			{
@@ -23,7 +25,11 @@
 			}
 		],
 		experimental_onFunctionCall: functionCallHandler,
-		body: { functions }
+		body: { functions },
+		onFinish: async () => {
+			const response = await fetch('api/d1/items');
+			items = await response.json();
+		}
 	});
 
 	const now = new Date();
@@ -32,9 +38,9 @@
 
 <section class="container mx-auto">
 	<h2>Pu-sa Items</h2>
-	{#if data.items}
+	{#if items}
 		<ul>
-			{#each data.items as item}
+			{#each items as item}
 				<li>{item.item}</li>
 			{/each}
 		</ul>

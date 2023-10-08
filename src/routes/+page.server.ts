@@ -6,7 +6,7 @@ interface Item {
 }
 
 export const load = (async (event) => {
-	const response = await event.fetch('/api/d1/item', {
+	const response = await event.fetch('/api/d1/items', {
 		method: 'GET'
 	});
 	return { items: await response.json<Item[]>() };
