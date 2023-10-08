@@ -4,7 +4,7 @@
 	import MessagePrompt from '$lib/components/MessagePrompt.svelte';
 	import { InitPrompt, WelcomePrompt } from '$lib/prompt/init';
 	import { functionCallHandler } from '$lib/functions/functionCallHandler';
-	import { functions } from '$lib/functions/Definitions/functions';
+	import { functions } from '$lib/functions/definitions/functions';
 
 	const { input, handleSubmit, messages } = useChat({
 		initialMessages: [
