@@ -24,6 +24,29 @@ const functionDefinitions = [
 			properties: {},
 			required: []
 		}
+	},
+	{
+		name: 'get_current_items',
+		description: 'Get the current items pu-sa has.',
+		parameters: {
+			type: 'object',
+			properties: {},
+			required: []
+		}
+	},
+	{
+		name: 'add_item',
+		description: 'Add item to pu-sa.',
+		parameters: {
+			type: 'object',
+			properties: {
+				item: {
+					type: 'string',
+					description: 'Item to add.'
+				}
+			},
+			required: ['item']
+		}
 	}
 ] as const;
 
