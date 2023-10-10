@@ -54,13 +54,8 @@ export type FunctionName = (typeof functionDefinitions)[number]['name'];
 
 export const functions: ChatCompletionCreateParams.Function[] = [...functionDefinitions];
 
-export const getFunctionName = (name: string): FunctionName | null => {
-	if (isFunctionName(name)) {
-		return name;
-	}
-	return null;
-};
+export const getFunctionName = (name: string): FunctionName | null =>
+	isFunctionName(name) ? name : null;
 
-const isFunctionName = (name: string): name is FunctionName => {
-	return functionDefinitions.some((def) => def.name === name);
-};
+const isFunctionName = (name: string): name is FunctionName =>
+	functionDefinitions.some((def) => def.name === name);
