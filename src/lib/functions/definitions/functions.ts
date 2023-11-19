@@ -9,8 +9,16 @@ const functionDefinitions = [
 			properties: {
 				keyword: {
 					type: 'string',
-					description:
-						'Keyword to search for.Do not contain the word "restaurant" or "レストラン".words is separated by space.only 3 words can be specified.'
+					description: `
+            Keyword to search for.
+            Do not contain the word "restaurant" or "レストラン".
+            words is separated by space.
+            only 2 words can be specified. 
+            first one is {a region}. 
+            second one is {a food}.
+            {a region} is only one region. so you can't specify "東京 大阪".
+            {a food} is only one food. so you can't specify "ラーメン うどん".
+            If you want to know more information, please ask.`
 				}
 			},
 			required: ['keyword']
