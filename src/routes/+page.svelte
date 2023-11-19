@@ -5,11 +5,6 @@
 	import { InitPrompt, WelcomePrompt } from '$lib/prompt/init';
 	import { functionCallHandler } from '$lib/functions/functionCallHandler';
 	import { functions } from '$lib/functions/definitions/functions';
-	import type { PageData } from './$types';
-
-	export let data: PageData;
-
-	let items: { item: string }[] = data.items;
 
 	const { input, handleSubmit, messages } = useChat({
 		initialMessages: [
@@ -25,29 +20,12 @@
 			}
 		],
 		experimental_onFunctionCall: functionCallHandler,
-		body: { functions },
-		onFinish: async () => {
-			const response = await fetch('api/d1/items');
-			items = await response.json();
-		}
+		body: { functions }
 	});
 
 	const now = new Date();
 	let elemChat: HTMLElement;
 </script>
-
-<section class="container mx-auto">
-	<h2>Pu-sa Items</h2>
-	{#if items}
-		<ul>
-			{#each items as item}
-				<li>{item.item}</li>
-			{/each}
-		</ul>
-	{:else}
-		<p>There are no items.</p>
-	{/if}
-</section>
 
 <section class="container mx-auto">
 	<div class="flex justify-center">

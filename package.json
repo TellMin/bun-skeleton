@@ -9,9 +9,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write .",
-		"generate": "drizzle-kit generate:sqlite --out migrations --schema src/schema.ts",
-		"up": "wrangler d1 migrations apply bun-skeleton --local"
+		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
 		"@iconify/svelte": "^3.1.4",
