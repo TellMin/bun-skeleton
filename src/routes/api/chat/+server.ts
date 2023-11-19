@@ -17,8 +17,8 @@ interface ChatRequest {
 		| undefined;
 }
 
-export async function POST({ request }) {
-	const { messages, functions, function_call } = await request.json<ChatRequest>();
+export async function POST({ request }: { request: Request }) {
+	const { messages, functions, function_call } = (await request.json()) as ChatRequest;
 
 	// Ask OpenAI for a streaming chat completion given the prompt
 	const response = await openai.chat.completions.create({

@@ -5,9 +5,5 @@ declare namespace App {
 	// interface Locals {}
 	// interface PageData {}
 	// interface Error {}
-	interface Platform {
-		env?: {
-			DB: D1Database;
-		};
-	}
+	// interface Platform {}
 }
